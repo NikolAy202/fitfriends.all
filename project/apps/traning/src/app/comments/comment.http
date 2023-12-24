@@ -1,0 +1,17 @@
+POST http://localhost:7000/api/comment/create/654b591bbf8f0edace566ac7 HTTP/1.1
+Content-Type: application/json
+
+{
+  "text": "ddvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvd",
+  "ratingTraining": 1,
+  "userId": "любитель"
+}
+
+###
+
+GET http://localhost:7000/api/comment/654b63d090bcd651bc904e63 HTTP/1.1
+
+
+###
+
+

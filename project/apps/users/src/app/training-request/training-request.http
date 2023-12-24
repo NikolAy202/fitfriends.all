@@ -1,0 +1,29 @@
+# Create a new request
+POST http://localhost:5000/api/request/create HTTP/1.1
+Content-Type: application/json
+
+{
+  "authorId": "6561ec430875db5c50c5034d",
+  "userId": "6561ec4e0875db5c50c50353",
+  "status": "на рассмотрении",
+  "type": "совместная тренировка"
+}
+
+###
+
+PATCH http://localhost:5000/api/request/update/656205c12a95e692c4dbea3f HTTP/1.1
+Content-Type: application/json
+
+{
+  "authorId": "6561ec430875db5c50c5034d",
+  "userId": "6561ec4e0875db5c50c50353",
+  "status": "принят",
+  "type": "совместная тренировка"
+}
+
+###
+
+
+GET http://localhost:5000/api/request/show/6563000cb130a45a4ad4cc80 HTTP/1.1
+
+

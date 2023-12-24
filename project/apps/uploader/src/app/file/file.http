@@ -1,0 +1,43 @@
+# Upload some file
+POST http://localhost:3001/api/files/upload/background/6560c05a07e221dac7ecce7d HTTP/1.1
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="background"; filename="00fdce7a-b47f-4c16-95d2-72260b5976b5.jpeg"
+Content-Type: image/jpeg
+
+< ./00fdce7a-b47f-4c16-95d2-72260b5976b5.jpeg
+
+--boundary--
+###
+# Get file by ID
+GET http://localhost:3001/api/files/6571c9e147526c2dbfaa0b61 HTTP/1.1
+
+# Upload some file
+POST http://localhost:3001/api/files/upload/avatar/6560c06907e221dac7ecce83 HTTP/1.1
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="trainer-1.png"
+Content-Type: image/png
+
+< ../../../../../mocks/avatars/trainer-1.png
+--boundary--
+###
+
+# Get file by ID
+GET http://localhost:3001/api/files/655750bcb7ab2bb584400904 HTTP/1.1
+
+###
+POST http://localhost:3000/api/files/upload/avatar/6554e9020a7c8c8db75c254c HTTP/1.1
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary--
+Content-Disposition: form-data; name="avatar"; filename="original.jpg"
+Content-Type: image/jpg
+
+< ./original.jpg
+
+--boundary--
+
+###

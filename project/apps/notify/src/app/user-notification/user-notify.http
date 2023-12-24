@@ -1,0 +1,14 @@
+
+###
+# Список оповещений
+GET http://localhost:6000/api/notify/list/6561ec4e0875db5c50c50353 HTTP/1.1
+
+
+###
+# Информация об оповещении
+GET http://localhost:6000/api/notify/6561ecb0e11b228a9b5097a0 HTTP/1.1
+
+
+###
+# Удалить оповещение
+DELETE http://localhost:6000/api/notify/6561f1994fd5fae33fe5dad9 HTTP/1.1

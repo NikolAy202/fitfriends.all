@@ -1,0 +1,38 @@
+###
+# Редактирование пользователя
+POST http://localhost:5000/api/users/update HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTU0YmIzMjRhNmY2NGJhNzE2MTdmNTgiLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCS0LDQvdGPIiwiaWF0IjoxNzAwMDYwNjM3LCJleHAiOjE3MDAwNjEyMzd9.A5r-UkDRsRfKAMbxEmxktuiFKNximQY-oGBf72Xzj2c
+Content-Type: application/json
+
+{
+  "trainingLevel": "любитель",
+  "typeTraining": ["йога", "бокс"]
+}
+
+###
+# Добавление в друзья
+POST http://localhost:5000/api/users/friend/656392bbb0e4097c7d921ddc HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTc0ODg4NjJiNzE2NmJkMTgzZGM2MDQiLCJlbWFpbCI6InVzZXIxMEBtYWlsLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwidXNlck5hbWUiOiJjY2NjIiwiaWF0IjoxNzAyNjQ3MjY5LCJleHAiOjE3MDI2NDk2Njl9.ZqVDUo7wdlocCAaxHFUBnLyJMQTHz0T0LG6S4DFP8qM
+
+###
+# Список пользователей
+GET http://localhost:5000/api/users HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTYwYzVjMzI0ZDQyZWRlM2FjMTAyMjMiLCJlbWFpbCI6InVzZXIyMkBub3Rmb3VuZC5sb2NhbCIsInJvbGUiOiJ0cmFpbmVyIiwidXNlck5hbWUiOiLQktCw0L3RjyIsImlhdCI6MTcwMDg0MzcwMCwiZXhwIjoxNzAwODQ0MzAwfQ.QCRiqeO1nhH1660YYkmjmiIhxuxEdWSkSfg3LUzmTsw
+
+
+###
+# Список друзей
+GET http://localhost:5000/api/users/friends HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTVhMDc0OGYyMzg5MTAyMjkxZTU4NzYiLCJlbWFpbCI6InVzZXI1QG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InRyYWluZXIiLCJ1c2VyTmFtZSI6ItCS0LDQvdGPIiwiaWF0IjoxNzAwNjY3MDYwLCJleHAiOjE3MDA2Njc2NjB9.cRT1LECmzYyIPJ-pQhyGGlNWBlzmvf_kMh6PyyWBbuE
+
+###
+# Подписаться на тренера
+POST http://localhost:5000/api/users/subscribe/655a0748f2389102291e5876 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTU3MGYyYjhkODE3NmZmMThlNzZjMjUiLCJlbWFpbCI6InVzZXI0QG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCS0LDQvdGPIiwiaWF0IjoxNzAwNDExOTA4LCJleHAiOjE3MDA0MTI1MDh9.y-WagZXC1vML8UcMrYRSwVWe3XTfWrv4bSqXxcymMvs
+
+###
+# Подписаться на тренера
+GET http://localhost:5000/api/users/balance HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTU3MGYyYjhkODE3NmZmMThlNzZjMjUiLCJlbWFpbCI6InVzZXI0QG5vdGZvdW5kLmxvY2FsIiwicm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6ItCS0LDQvdGPIiwiaWF0IjoxNzAwNzI0NjE2LCJleHAiOjE3MDA3MjUyMTZ9.9kUtUILGneZ00o1VMJhzxIRi6rjVwTFHhHuY27GQyDY
+
+

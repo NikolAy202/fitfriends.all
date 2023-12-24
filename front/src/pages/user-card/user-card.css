@@ -1,0 +1,18 @@
+.conteiner-user-revers {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.user-card-coach__training-head {
+  order: 0;
+}
+
+.conteiner-user_order {
+  order: 1;
+}
+
+.user-card-coach__training-form
+ {
+  order:2;
+ }

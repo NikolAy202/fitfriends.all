@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsString, Length } from 'class-validator';
+import { PasswordLength } from './const.dto';
 
 export class LoginUserDto {
 
@@ -15,7 +16,7 @@ export class LoginUserDto {
     example: '123456'
   })
   @IsString({message: 'password is required'})
-  @Length(6, 12, {message: 'Min length for password is 6, max is 12'})
+  @Length(PasswordLength.MIN, PasswordLength.MAX, {message: 'Min length for password is 6, max is 12'})
   public password: string;
 
 }

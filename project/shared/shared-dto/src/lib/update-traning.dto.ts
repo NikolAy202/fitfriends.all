@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { TimeTraining, TrainingLevel, TypeTraining, UserGender } from "@project/shared/app-types";
 import { IsBoolean, IsEnum, IsInt, IsOptional, IsString, Length, Max, Min } from "class-validator";
+import { CaloriesReset, DescriptionLength, NIN_PRICE, TitleLength } from "./const.dto";
 
 export class UpdateTraningDto {
 
@@ -8,7 +9,7 @@ export class UpdateTraningDto {
     description: 'Name of traning',
     example: 'Tough leg workout!'
   })
-  @Length(1, 15, {message: 'Min length title is 1, max is 15'})
+  @Length(TitleLength.MIN, TitleLength.MAX, {message: 'Min length title is 1, max is 15'})
   @IsOptional()
   public title?: string;
 
@@ -50,7 +51,7 @@ export class UpdateTraningDto {
     example: '1500'
   })
   @IsInt()
-  @Min(0, {message: 'Minimum price is 0'})
+  @Min(NIN_PRICE, {message: 'Minimum price is 0'})
   @IsOptional()
   public price?: number
 
@@ -59,8 +60,8 @@ export class UpdateTraningDto {
     example: '1200'
   })
   @IsInt()
-  @Min(100, {message: 'Minimum calories is 1000'})
-  @Max(100000, {message: 'Maximum calories is 5000'})
+  @Min(CaloriesReset.MIN, {message: 'Minimum calories is 1000'})
+  @Max(CaloriesReset.MAX, {message: 'Maximum calories is 5000'})
   @IsOptional()
   public caloriesBurnedTraining?: number
 
@@ -69,7 +70,7 @@ export class UpdateTraningDto {
     example: 'We will work out every muscle of your legs, you will leave training as invalids.'
   })
   @IsString()
-  @Length(10, 140, {message: 'Min length text is 10, max is 140'})
+  @Length(DescriptionLength.MIN, DescriptionLength.MAX, {message: 'Min length text is 10, max is 140'})
   @IsOptional()
   public description?: string;
 

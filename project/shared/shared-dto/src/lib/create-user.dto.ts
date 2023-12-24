@@ -3,8 +3,8 @@ import { Location } from "shared/app-types/src/lib/location.enum";
 import { ApiProperty } from '@nestjs/swagger';
 import { ArrayMaxSize, IsArray, IsBoolean, IsEmail, IsEnum, IsISO8601, IsInt, IsOptional, IsString, Length, Min, ValidateIf } from "class-validator";
 import { TimeTraining, TrainingLevel, TypeTraining, UserRole } from "@project/shared/app-types";
+import { DescriptionLength, MAX_TRAINING_COUNT, MinCaloriesBurnedDay, PasswordLength, TitleLength } from "./const.dto";
 
-const MAX_TRAINING_COUNT = 3;
 export class CreateUserDto {
 
   @ApiProperty({
@@ -26,7 +26,7 @@ export class CreateUserDto {
     example: 'Keks',
   })
   @IsString()
-  @Length(1, 15, {message: 'Min length name is 1, max is 15'})
+  @Length(TitleLength.MIN, TitleLength.MAX, {message: 'Min length name is 1, max is 15'})
   public userName: string;
 
   @ApiProperty({
@@ -34,7 +34,7 @@ export class CreateUserDto {
     example: '123456'
   })
   @IsString({message: 'password is required'})
-  @Length(6, 12, {message: 'Min length for password is 6, max is 12'})
+  @Length(PasswordLength.MIN, PasswordLength.MAX, {message: 'Min length for password is 6, max is 12'})
   public password: string;
 
   @ApiProperty({
@@ -65,7 +65,7 @@ export class CreateUserDto {
   })
   @IsOptional()
   @IsString()
-  @Length(10, 140, {message: 'Min length text is 10, max is 140'})
+  @Length(DescriptionLength.MIN, DescriptionLength.MAX, {message: 'Min length text is 10, max is 140'})
   public description: string;
 
   @ApiProperty({
@@ -122,7 +122,7 @@ export class CreateUserDto {
   })
   @ValidateIf(o => o.role === UserRole.User)
   @IsInt()
-  @Min(0, {message: 'Minimum calories is 0'})
+  @Min(MinCaloriesBurnedDay, {message: 'Minimum calories is 0'})
   public caloriesBurnedDay: number;
 
   @ValidateIf(o => o.role === UserRole.User)

@@ -1,8 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { TimeTraining, TrainingLevel, TypeTraining, UserGender, UserRole, Location } from "@project/shared/app-types";
 import { ArrayMaxSize, IsArray, IsBoolean, IsEnum, IsISO8601, IsInt, IsOptional, IsString, Length, Min, ValidateIf } from "class-validator";
+import { DescriptionLength, MAX_TRAINING_COUNT, MinCaloriesBurnedDay, TitleLength } from "./const.dto";
 
-const MAX_TRAINING_COUNT = 50;
 
 export class UpdateUserDto {
 
@@ -19,7 +19,7 @@ export class UpdateUserDto {
     example: 'Keks',
   })
   @IsString()
-  @Length(1, 15, {message: 'Min length name is 1, max is 15'})
+  @Length(TitleLength.MIN, TitleLength.MAX, {message: 'Min length name is 1, max is 15'})
   @IsOptional()
   public userName?: string;
 
@@ -44,7 +44,7 @@ export class UpdateUserDto {
     example: 'Хороший кот ищет товарищей для тренировки'
   })
   @IsString()
-  @Length(10, 140, {message: 'Min length text is 10, max is 140'})
+  @Length(DescriptionLength.MIN, DescriptionLength.MAX, {message: 'Min length text is 10, max is 140'})
   @IsOptional()
   public description?: string;
 
@@ -107,7 +107,7 @@ export class UpdateUserDto {
   })
   @ValidateIf(o => o.role === UserRole.User)
   @IsInt()
-  @Min(0, {message: 'Minimum calories is 0'})
+  @Min(MinCaloriesBurnedDay, {message: 'Minimum calories is 0'})
   @IsOptional()
   public caloriesBurnedDay?: number;
 

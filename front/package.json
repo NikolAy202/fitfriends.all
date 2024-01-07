@@ -12,6 +12,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-gallery-carousel": "0.4.0",
+    "react-helmet-async": "2.0.4",
     "react-icons": "4.12.0",
     "react-leaflet": "4.2.1",
     "react-multi-carousel": "2.8.4",
@@ -83,6 +84,13 @@
     "axios-mock-adapter": "^1.21.2",
     "eslint-config-htmlacademy": "^8.0.0",
     "faker": "^5.5.3",
+    "jest": "^27.5.1",
     "typescript": "^4.8.4"
-  }
+  },
+  "jest": {
+    "transformIgnorePatterns": ["/node_modules/(?!react-leaflet|@react-leaflet|leaflet)"],
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    }
+}
 }

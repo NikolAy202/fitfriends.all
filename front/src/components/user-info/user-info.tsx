@@ -221,6 +221,7 @@ const UserInfo = ({user}: Props): JSX.Element => {
                   title="Только буквы русского/английского алфавита"
                   value={currentInfo.userName}
                   onChange={handleInfoChange}
+                  data-testid="userName"
                 />
               </span>
             </label>
@@ -233,6 +234,7 @@ const UserInfo = ({user}: Props): JSX.Element => {
                   disabled={!isEditForm}
                   onChange={handleInfoChange}
                   value={currentInfo.description}
+                  data-testid="description"
                 >
                 </textarea>
                 {isNotCorrectLength &&

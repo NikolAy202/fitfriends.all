@@ -18,7 +18,7 @@ const CommentItem = ({comment}: Props): JSX.Element => (
         </svg><span>{comment.ratingTraining}</span>
       </div>
     </div>
-    <p className="review__comment">{comment.text}</p>
+    <p className="review__comment" data-testid="message">{comment.text}</p>
   </div>
 );
 

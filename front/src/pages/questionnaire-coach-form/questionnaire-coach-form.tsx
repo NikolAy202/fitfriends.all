@@ -8,9 +8,9 @@ import { SuccessCoach } from '../../const';
 enum FormFieldName {
   levelTraining = 'levelTraining',
   trainingType = 'trainingType',
-  certificate = 'certificate',
-  successCoach = 'successCoach',
-  isPersonal = 'isPersonal'
+  certificates = 'certificates',
+  merits = 'merits',
+  personalTraining = 'personalTraining'
 }
 
 type UserData ={
@@ -29,9 +29,9 @@ function QuestionnaireCoachForm({userData, avatarImg}: UserData): JSX.Element {
       ...userData,
       trainingLevel: currentlevelTraining,
       typeTraining: currentTrainingType,
-      certificate: String(fileCertificate),
-      merits: String(formData.get(FormFieldName.successCoach)),
-      personalTraining: !!formData.get(FormFieldName.isPersonal),
+      certificates: String(fileCertificate),
+      merits: String(formData.get(FormFieldName.merits)),
+      personalTraining: !!formData.get(FormFieldName.personalTraining),
       avatarImg: avatarImg,
       certificateFile: fileCertificate,
     };
@@ -193,10 +193,11 @@ function QuestionnaireCoachForm({userData, avatarImg}: UserData): JSX.Element {
                       <label>
                         <span className="custom-input--error">
                           <textarea
-                            id={FormFieldName.successCoach}
-                            name={FormFieldName.successCoach}
+                            id={FormFieldName.merits}
+                            name={FormFieldName.merits}
                             placeholder=" "
                             onChange={handleSuccessChange}
+                            data-testid="textarea"
                           >
                           </textarea>
                           {isNotCorrectLength &&
@@ -206,7 +207,7 @@ function QuestionnaireCoachForm({userData, avatarImg}: UserData): JSX.Element {
                     </div>
                     <div className="questionnaire-coach__checkbox">
                       <label>
-                        <input type="checkbox" value="individual-training" name={FormFieldName.isPersonal}/>
+                        <input type="checkbox" value="individual-training" name={FormFieldName.personalTraining}/>
                         <span className="questionnaire-coach__checkbox-icon">
                           <svg width="9" height="6" aria-hidden="true">
                             <use xlinkHref="#arrow-check"></use>

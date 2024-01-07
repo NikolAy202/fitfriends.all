@@ -40,7 +40,7 @@ const Header = (): JSX.Element => {
         <nav className="main-nav">
           <ul className="main-nav__list">
             <li className="main-nav__item">
-              <Link className="main-nav__link is-active" to={pathTypeMain} aria-label="На главную">
+              <Link className="main-nav__link is-active" to={pathTypeMain} aria-label="На главную" data-testid="handleMainClick">
                 <svg width="18" height="18" aria-hidden="true">
                   <use xlinkHref="#icon-home"></use>
                 </svg>

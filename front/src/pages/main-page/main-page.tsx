@@ -210,7 +210,7 @@ function MainPage() {
           {userTrainings.length !== 0 &&
       (
         <div className="container">
-          <div className="special-for-you__wrapper conteiner-main-revers">
+          <div className="special-for-you__wrapper conteiner-main-revers" data-testid="for_you">
             <Carousel
               responsive={responsive}
               arrows={false}
@@ -257,7 +257,7 @@ function MainPage() {
         </section>
         <section className="special-offers">
           <div className="container">
-            <div className="special-offers__wrapper">
+            <div className="special-offers__wrapper" data-testid="special">
               <h2 className="visually-hidden">Специальные предложения</h2>
               {specialTrainings.length !== 0 &&
               (
@@ -311,7 +311,7 @@ function MainPage() {
         </section>
         <section className="popular-trainings">
           <div className="container">
-            <div className="popular-trainings__wrapper conteiner-main-revers">
+            <div className="popular-trainings__wrapper conteiner-main-revers" data-testid="popular">
               {trainings.length !== 0 &&
         (
           <Carousel
@@ -346,7 +346,7 @@ function MainPage() {
         </section>
         <section className="look-for-company">
           <div className="container">
-            <div className="look-for-company__wrapper conteiner-main-revers">
+            <div className="look-for-company__wrapper conteiner-main-revers" data-testid="look">
               {users.length !== 0 &&
                 <Carousel
                   responsive={responsiveFour}

@@ -52,7 +52,9 @@ const CertificateItem = ({certificateId, certificatePath}: Props): JSX.Element =
         {/*<embed src={`${certificatePath}#toolbar=0`} width="294" height="360" type="application/pdf" />*/}
         <object data={`${certificateFile.certificatePath}#toolbar=0`}
           type="application/pdf"
-          width="294" height="360"
+          width="294"
+          height="360"
+          data-testid="object"
         >не удалось показать документ
         </object>
       </div>

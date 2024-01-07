@@ -42,7 +42,7 @@ const TrainingItem = ({training}: Props): JSX.Element => {
       </div>
       <p className="thumbnail-training__price">{training.price === 0 ? 'Бесплатно' : training.price}
       </p>
-      <h3 className="thumbnail-training__title">{training.timeTraining}</h3>
+      <h3 className="thumbnail-training__title">{training.title}</h3>
       <div className="thumbnail-training__info">
         <ul className="thumbnail-training__hashtags-list">
           <li className="thumbnail-training__hashtags-item">

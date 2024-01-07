@@ -21,7 +21,7 @@ const OrderItem = ({order, currentUserRole}: Props): JSX.Element => {
     navigate(path);
   };
   // eslint-disable-next-line no-console
-  console.log(order);
+  console.log(order.training.title);
 
   return (
     <div className="thumbnail-training">

@@ -29,6 +29,7 @@ function AccountCoachPage(): JSX.Element {
                     <Link
                       className="thumbnail-link thumbnail-link--theme-light"
                       to={`${AppRoute.AccountCoach}/trainings`}
+                      data-testid="trainingsId"
                     >
                       <div className="thumbnail-link__icon thumbnail-link__icon--theme-light">
                         <svg width="30" height="26" aria-hidden="true">
@@ -40,6 +41,7 @@ function AccountCoachPage(): JSX.Element {
                     <Link
                       className="thumbnail-link thumbnail-link--theme-light"
                       to={`${AppRoute.AccountCoach}/trainings/create`}
+                      data-testid="trainings"
                     >
                       <div className="thumbnail-link__icon thumbnail-link__icon--theme-light">
                         <svg width="30" height="26" aria-hidden="true">
@@ -50,6 +52,7 @@ function AccountCoachPage(): JSX.Element {
                     <Link
                       className="thumbnail-link thumbnail-link--theme-light"
                       to={`${AppRoute.AccountCoach}/friends`}
+                      data-testid="friends"
                     >
                       <div className="thumbnail-link__icon thumbnail-link__icon--theme-light">
                         <svg width="30" height="26" aria-hidden="true">

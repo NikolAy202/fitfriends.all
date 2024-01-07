@@ -26,12 +26,12 @@ function AccountUserPage(): JSX.Element {
                       <div className="personal-account-user__form">
                         <div className="personal-account-user__input">
                           <label><span className="personal-account-user__label">План на день, ккал</span>
-                            <input type="text" name="schedule-for-the-day" value={userInfo.caloriesBurnedDay} readOnly/>
+                            <input type="text" name="schedule-for-the-day" defaultValue={userInfo.caloriesBurnedDay} readOnly/>
                           </label>
                         </div>
                         <div className="personal-account-user__input">
                           <label><span className="personal-account-user__label">План на неделю, ккал</span>
-                            <input type="text" name="schedule-for-the-week" value={userInfo.caloriesBurnedTraining * 7} readOnly/>
+                            <input type="text" name="schedule-for-the-week" defaultValue={userInfo.caloriesBurnedTraining * 7} readOnly/>
                           </label>
                         </div>
                       </div>
@@ -41,6 +41,7 @@ function AccountUserPage(): JSX.Element {
                     <Link
                       className="thumbnail-link thumbnail-link--theme-light"
                       to={`${AppRoute.AccountUser}/friends`}
+                      data-testid="friends"
                     >
                       <div className="thumbnail-link__icon thumbnail-link__icon--theme-light">
                         <svg width="30" height="26" aria-hidden="true">
@@ -51,6 +52,7 @@ function AccountUserPage(): JSX.Element {
                     <Link
                       className="thumbnail-link thumbnail-link--theme-light"
                       to={`${AppRoute.AccountUser}/orders`}
+                      data-testid="orders"
                     >
                       <div className="thumbnail-link__icon thumbnail-link__icon--theme-light">
                         <svg width="30" height="26" aria-hidden="true">

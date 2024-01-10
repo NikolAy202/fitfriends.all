@@ -8,7 +8,7 @@ services:
     env_file:
       - ./apps/traning/.fitfriends.traning.mongodb.env
     volumes:
-      - fitfriends.training.volume:/data/db
+      - fitfriends.traning.volume:/data/db
     networks:
       - fitfriends
     ports:
@@ -105,9 +105,7 @@ services:
       - fitfriends
 
   fitfriends.traning:
-    build:
-      context: .
-      dockerfile: ./apps/traning/Dockerfile
+    image: fitfriends.traning.latest
     container_name: fitfriends.traning.app
     depends_on:
       - fitfriends.traning.mongodb
@@ -190,9 +188,7 @@ services:
 
 
   fitfriends.bff:
-    build:
-      context: .
-      dockerfile: ./apps/bff/Dockerfile
+    image: fitfriends.uploader.latest
     container_name: fitfriends.bff.app
     restart: always
     environment:
@@ -218,7 +214,7 @@ networks:
 
 
 volumes:
-  fitfriends.training.volume:
+  fitfriends.traning.volume:
   fitfriends.users.volume:
   fitfriends.volume:
   fitfriends.uploader.volume:

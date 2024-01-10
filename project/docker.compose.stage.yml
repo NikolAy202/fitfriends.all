@@ -124,7 +124,9 @@ services:
       - fitfriends
 
   fitfriends.users:
-    image: fitfriends.users.latest
+    build:
+      context: .
+      dockerfile: ./apps/users/Dockerfile
     container_name: fitfriends.users.app
     depends_on:
       - fitfriends.users.mongodb
@@ -188,7 +190,9 @@ services:
 
 
   fitfriends.bff:
-    image: fitfriends.uploader.latest
+    build:
+      context: .
+      dockerfile: ./apps/bff/Dockerfile
     container_name: fitfriends.bff.app
     restart: always
     environment:

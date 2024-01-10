@@ -26,6 +26,7 @@ export class UsersController {
   public async create(@Body() createUserDto: CreateUserDto) {
 
     const { data } = await this.httpService.axiosRef.post(`${ApplicationServiceURL.Auth}/register`, createUserDto);
+    console.log('ss')
     return data;
   }
 
@@ -196,7 +197,7 @@ public async checkEmail(@Body() email: string) {
       'Authorization': req.headers['authorization'],
       }
   })
-  
+
   await Promise.all(data.map(async (el) => {
     if (el.avatar) {
       const {data: {path}}  = await this.httpService.axiosRef.get(`${ApplicationServiceURL.Files}/${el.avatar}`);

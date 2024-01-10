@@ -16,7 +16,8 @@
         "tsConfig": "apps/traning/tsconfig.app.json",
         "assets": ["apps/traning/src/assets"],
         "isolatedConfig": true,
-        "webpackConfig": "apps/traning/webpack.config.js"
+        "webpackConfig": "apps/traning/webpack.config.js",
+        "generatePackageJson": true
       },
       "configurations": {
         "development": {},
@@ -57,6 +58,16 @@
           "ci": true,
           "codeCoverage": true
         }
+      }
+    },
+    "buildImage": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx run traning:build",
+          "docker build --file apps/traning/Dockerfile --tag fitfriends.traning.latest ."
+        ]
+
       }
     }
   },

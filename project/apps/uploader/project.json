@@ -16,7 +16,8 @@
         "tsConfig": "apps/uploader/tsconfig.app.json",
         "assets": ["apps/uploader/src/assets"],
         "isolatedConfig": true,
-        "webpackConfig": "apps/uploader/webpack.config.js"
+        "webpackConfig": "apps/uploader/webpack.config.js",
+        "generatePackageJson": true
       },
       "configurations": {
         "development": {},
@@ -57,6 +58,16 @@
           "ci": true,
           "codeCoverage": true
         }
+      }
+    },
+    "buildImage": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx run uploader:build",
+          "docker build --file apps/uploader/Dockerfile --tag fitfriends.uploader.latest ."
+        ]
+
       }
     }
   },

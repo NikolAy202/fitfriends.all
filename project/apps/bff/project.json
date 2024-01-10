@@ -16,7 +16,8 @@
         "tsConfig": "apps/bff/tsconfig.app.json",
         "assets": ["apps/bff/src/assets"],
         "isolatedConfig": true,
-        "webpackConfig": "apps/bff/webpack.config.js"
+        "webpackConfig": "apps/bff/webpack.config.js",
+        "generatePackageJson": true
       },
       "configurations": {
         "development": {},
@@ -57,6 +58,16 @@
           "ci": true,
           "codeCoverage": true
         }
+      }
+    },
+    "buildImage": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx run bff:build",
+          "docker build --file apps/bff/Dockerfile --tag fitfriends.bff.latest ."
+        ]
+
       }
     }
   },

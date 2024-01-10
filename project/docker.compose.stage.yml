@@ -1,0 +1,226 @@
+version: '3'
+services:
+#mongo
+  fitfriends.traning.mongodb:
+    image: mongo
+    container_name: fitfriends.traning.mongodb
+    restart: always
+    env_file:
+      - ./apps/traning/.fitfriends.traning.mongodb.env
+    volumes:
+      - fitfriends.training.volume:/data/db
+    networks:
+      - fitfriends
+    ports:
+      - 27016:27017
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/fitfriends-training --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  fitfriends.users.mongodb:
+    image: mongo
+    container_name: fitfriends.users.mongodb
+    restart: always
+    env_file:
+      - ./apps/users/.fitfriends.users.mongodb.env
+    volumes:
+      - fitfriends.users.volume:/data/db
+    networks:
+      - fitfriends
+    ports:
+      - 27017:27017
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/fitfriends-users --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  fitfriends.uploader.mongodb:
+    image: mongo
+    container_name: fitfriends.uploader.mongodb
+    restart: always
+    env_file:
+      - ./apps/uploader/.fitfriends.uploader.mongodb.env
+    volumes:
+      - fitfriends.uploader.volume:/data/db
+    networks:
+      - fitfriends
+    ports:
+      - 27018:27017
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/fitfriends-uploader --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  fitfriends.notify.mongodb:
+    image: mongo
+    container_name: fitfriends.notify.mongo
+    restart: always
+    env_file:
+      - ./apps/notify/.fitfriends.notify.mongodb.env
+    volumes:
+      - fitfriends.notify.volume:/data/db
+    networks:
+      - fitfriends
+    ports:
+      - 27020:27017
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/fitfriends-notify --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  fitfriends.notify.rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: fitfriends.notify.rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: test
+    volumes:
+      - fitfriends.volume:/data/db
+    networks:
+      - fitfriends
+    ports:
+      - '1088:15672'
+      - '5672:5672'
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+  fitfriends.notify.fakesmtp:
+    image: gessnerfl/fake-smtp-server:2.0.0
+    container_name: fitfriends.fakesmtp
+    hostname: 'fakesmtp'
+    ports:
+      - '1083:8080'
+      - '8025:8025'
+    networks:
+      - fitfriends
+
+  fitfriends.traning:
+    build:
+      context: .
+      dockerfile: ./apps/traning/Dockerfile
+    container_name: fitfriends.traning.app
+    depends_on:
+      - fitfriends.traning.mongodb
+      - fitfriends.notify.rabbitmq
+    links:
+        - fitfriends.notify.rabbitmq
+    restart: always
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ./apps/traning/.fitfriends.traning.env
+    ports:
+      - 3004:3004
+    hostname: fitfriends
+    networks:
+      - fitfriends
+
+  fitfriends.users:
+    image: fitfriends.users.latest
+    container_name: fitfriends.users.app
+    depends_on:
+      - fitfriends.users.mongodb
+      - fitfriends.notify.rabbitmq
+    links:
+        - fitfriends.notify.rabbitmq
+    restart: always
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ./apps/users/.fitfriends.users.env
+    ports:
+      - 5000:5000
+    hostname: fitfriends
+    networks:
+      - fitfriends
+
+  fitfriends.uploader:
+    image: fitfriends.uploader.latest
+    container_name: fitfriends.uploader.app
+    depends_on:
+      - fitfriends.uploader.mongodb
+      - fitfriends.notify.rabbitmq
+    links:
+        - fitfriends.notify.rabbitmq
+    restart: always
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ./apps/uploader/.fitfriends.uploader.env
+    ports:
+      - 3001:3001
+    hostname: fitfriends
+    volumes:
+      - html_files:/C/git/FitFriends/backend/apps/uploader/uploads
+    networks:
+      - fitfriends
+
+
+  fitfriends.notify:
+    build:
+      context: .
+      dockerfile: ./apps/notify/Dockerfile
+    container_name: fitfriends.notify.app
+    depends_on:
+      - fitfriends.notify.mongodb
+      - fitfriends.notify.rabbitmq
+      - fitfriends.notify.fakesmtp
+    links:
+        - fitfriends.notify.rabbitmq
+    restart: always
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ./apps/notify/.fitfriends.notify.env
+    ports:
+      - 6000:6000
+    hostname: fitfriends
+    networks:
+      - fitfriends
+
+
+  fitfriends.bff:
+    build:
+      context: .
+      dockerfile: ./apps/bff/Dockerfile
+    container_name: fitfriends.bff.app
+    restart: always
+    environment:
+      - NODE_ENV=production
+    ports:
+      - 3000:3000
+    networks:
+      - fitfriends
+    links:
+      - fitfriends.traning
+      - fitfriends.users
+      - fitfriends.uploader
+      - fitfriends.notify
+    depends_on:
+      - fitfriends.traning
+      - fitfriends.users
+      - fitfriends.uploader
+      - fitfriends.notify
+
+networks:
+  fitfriends:
+    driver: bridge
+
+
+volumes:
+  fitfriends.training.volume:
+  fitfriends.users.volume:
+  fitfriends.volume:
+  fitfriends.uploader.volume:
+  fitfriends.notify.volume:
+  html_files:

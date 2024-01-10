@@ -105,7 +105,9 @@ services:
       - fitfriends
 
   fitfriends.traning:
-    image: fitfriends.traning.latest
+    build:
+      context: .
+      dockerfile: ./apps/users/Dockerfile
     container_name: fitfriends.traning.app
     depends_on:
       - fitfriends.traning.mongodb
@@ -197,6 +199,8 @@ services:
     restart: always
     environment:
       - NODE_ENV=production
+    env_file:
+      - ./apps/bff/.fitfriends.bff.env
     ports:
       - 3000:3000
     networks:
